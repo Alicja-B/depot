@@ -1,0 +1,20 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  image_url: MyString
+  price: 9.99
+
+two:
+  title: MyString
+  description: MyText
+  image_url: MyString
+  price: 9.99
+
+ruby: 
+  title:  Building blocks
+  description:  
+      Building blocks help your child to develop fine motor skills and spatial-visual imagination.
+  price: 12.99
+  image_url: toy1.jpg
