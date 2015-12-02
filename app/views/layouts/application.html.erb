@@ -7,27 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>">
-  <div id="banner">
-    <%= image_tag("logo.png") %>
-    <%= @page_title || "Prodigy Toys" %>
+  <div id="main-container" class="container">
+  <div class="page-header">
+    <%= image_tag("banner2.png") %>
   </div>
-  <div id="columns">
-    <div id="side">
+  <%= render 'shared/navigation' %>
+  <div class="row">
+    <div class="col-xs-3">
+    <%= image_tag("logo.png") %>
     <% if @cart %> 
      <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
        <%= render @cart %>
      <% end %>
     <% end %>
-    <ul>
+    <ul class="list-unstyled">
       <li><a href="http://www....">Home</a></li>
       <li><a href="http://www....">Seller Page</a></li>
       <li><a href="http://www....">About Us</a></li>
       <li><a href="http://www....">Contact</a></li>
     </ul>
    </div>
-   <div id="main">
+   <div class="col-xs-9">
       <%= yield %>
     </div>
   </div>
+ </div>
 </body>
 </html>

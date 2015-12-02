@@ -5,12 +5,14 @@ one:
   description: MyText
   image_url: MyString
   price: 9.99
+  category_id: Math skills
 
 two:
   title: MyString
   description: MyText
   image_url: MyString
   price: 9.99
+  category_id: Math skills
 
 ruby: 
   title:  Building blocks
@@ -18,3 +20,4 @@ ruby:
       Building blocks help your child to develop fine motor skills and spatial-visual imagination.
   price: 12.99
   image_url: toy1.jpg
+  category_id: Math skills
