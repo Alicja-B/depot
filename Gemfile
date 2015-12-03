@@ -6,7 +6,7 @@ gem 'rails', '4.2.4'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -42,9 +42,10 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'tzinfo'
 gem 'tzinfo-data'
+gem 'rails_12factor'
 
 # Use unicorn as the app server
 # gem 'unicorn'
