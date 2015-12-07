@@ -26,7 +26,7 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  config.action_controller.asset_host = 'http://assets.example.com'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -77,17 +77,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
-Depot::Application.configure do
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port:    587,
-    domain:  "domain.of.sender.net",
-    authentication: "plain",
-    user_name: "dave",
-    password: "secret",
-    enable_starttls_auto: true
-  }
- config.action_mailer.default_url_options = 
-      { :host => 'localhost:3000' }
-end
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  :user_name => '521956bde4ee445cd',
+  :password => '9d8e02052d1081',
+  :address => 'mailtrap.io',
+  :domain => 'mailtrap.io',
+  :port => '2525',
+  :authentication => :cram_md5
+}
