@@ -1,4 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
+﻿# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
@@ -51,7 +51,7 @@ image_url: 'toy7.jpg',
 price: 22.99, category_id: 4)
 Product.create!(title: 'Smart Snacks',
 description:
-	%{<p>Stars, stripes, shapes, sprinkles�these cookies have everything! Kid-approved Smart Snacks pack serious learning into delightful batches of irresistible play food. This batch features 8 shaped cookies decorated with bright icing colors for a heaping helping of shape and color identification.</p>},
+	%{<p>Stars, stripes, shapes, sprinkles…these cookies have everything! Kid-approved Smart Snacks pack serious learning into delightful batches of irresistible play food. This batch features 8 shaped cookies decorated with bright icing colors for a heaping helping of shape and color identification.</p>},
 image_url: 'toy8.jpg',
 price: 19.99, category_id: 1)
 Product.create!(title: 'Magnetic Letters',

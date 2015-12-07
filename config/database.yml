@@ -8,9 +8,11 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
+  host: localhost
   username: postgres
   port: 5432
   password: chooselife
+  
 
 development:
   <<: *default
@@ -28,7 +30,7 @@ production:
   encoding: utf8
   reconnect: false
   database: db_production
-  pool: 6
+  pool: 7
   username: postgres
   password: chooselife
   host: localhost
