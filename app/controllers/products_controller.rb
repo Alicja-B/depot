@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :who_bought]
+ skip_before_action :authorize, only: [:show]
+ 
+ before_action :set_product, only: [:show, :edit, :update, :destroy, :who_bought]
 
   # GET /products
   # GET /products.json
@@ -27,13 +29,13 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    
-    @product.category_id = params[:category_id]
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        flash[:success] = 'Product was successfully created.'
+        format.html { redirect_to @product }
         format.json { render :show, status: :created, location: @product }
       else
+        flash[:danger] = 'There was a problem creating the product!'
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
@@ -46,7 +48,8 @@ class ProductsController < ApplicationController
     @product.category_id = params[:category_id]
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        flash[:success] = 'Product was successfully updated.'
+        format.html { redirect_to @product}
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -60,7 +63,8 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      flash[:success] = 'Product was successfully destroyed.'
+      format.html { redirect_to products_url }
       format.json { head :no_content }
     end
   end
@@ -83,6 +87,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price)
+      params.require(:product).permit(:title, :description, :image_url, :price, :category_id)
     end
 end

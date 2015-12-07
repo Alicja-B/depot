@@ -1,24 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
+<div class="row">
+  
+  <div class="col-xs-4">
+    <%= image_tag(@product.image_url, size:"300x400") %>
+  </div>
+  <div class="col-xs-5">
+    <h3><%= @product.title %></h3>
+    <%= sanitize(@product.description) %>
+    <h3>Price:
+    <%= number_to_currency(@product.price) %></h3><br>
+    <% if session[:user_id] %> 
+      <%= link_to 'Edit', edit_product_path(@product) %> |
+      <%= link_to 'Back', products_path %>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+  
 
-<p>
-  <strong>Image url:</strong>
-  <%= @product.image_url %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+</div>

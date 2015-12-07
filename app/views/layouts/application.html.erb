@@ -7,27 +7,37 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>">
-  <div id="main-container" class="container">
-  <div class="page-header">
-    <%= image_tag("banner2.png") %>
-  </div>
+  <div id="main-container" class="container-fluid">
+  
+   <div class="header">
+     <%= image_tag("banner1.jpg") %>
+   </div>
+  
   <%= render 'shared/navigation' %>
+  
   <div class="row">
     <div class="col-xs-3">
-    <%= image_tag("logo.png") %>
+    
     <% if @cart %> 
      <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
        <%= render @cart %>
      <% end %>
     <% end %>
-    <ul class="list-unstyled">
-      <li><a href="http://www....">Home</a></li>
-      <li><a href="http://www....">Seller Page</a></li>
-      <li><a href="http://www....">About Us</a></li>
-      <li><a href="http://www....">Contact</a></li>
-    </ul>
+    
+    <% if session[:user_id] %>
+      <div class="list-group">
+        <%= link_to 'Orders', orders_path, class: 'list-group-item list-group-item-info' %>
+        <%= link_to 'Products', products_path, class: 'list-group-item list-group-item-info' %>
+        <%= link_to 'Users', users_path, 
+         class: 'list-group-item list-group-item-info' %>
+        <%= button_to 'Logout', logout_path, class: 'btn btn-default', method: :delete %>
+       </div>
+    <% end %>
    </div>
    <div class="col-xs-9">
+     <% flash.each do |name, msg| -%>
+       <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+     <% end -%>
       <%= yield %>
     </div>
   </div>

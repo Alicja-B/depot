@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :categories 
 
   get 'admin' => 'admin#index'
+  get 'contact' => 'info#contact'
+  get 'about'  => 'info#about'
+  get 'info' => 'info#order'
 
   controller :sessions do
     get 'login' => :new
@@ -13,7 +16,8 @@ Rails.application.routes.draw do
   get 'sessions/create'
 
   get 'sessions/destroy'
-
+  
+  delete 'logout' =>'sessions#destroy'
   resources :users
   resources :orders
   resources :carts
@@ -22,8 +26,18 @@ Rails.application.routes.draw do
   resources :carts
   get 'store/index'
 
+  Rails.application.routes.draw do
+  get "/info/:info" => "info#show"
+end
+
   resources :products do
     get :who_bought, on: :member
+  end
+
+  resources :line_items do
+    member do
+      post 'decrease'
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

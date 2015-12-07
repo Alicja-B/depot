@@ -30,7 +30,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        flash[:success] = 'Cart was successfully created'
+        format.html { redirect_to @cart}
         format.json { render :show, status: :created, location: @cart }
       else
         format.html { render :new }
@@ -44,7 +45,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
   def update
     respond_to do |format|
       if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
+        flash[:success] = 'Cart was successfully updated'
+        format.html { redirect_to @cart }
         format.json { render :show, status: :ok, location: @cart }
       else
         format.html { render :edit }
@@ -76,7 +78,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
     end
     def invalid_cart
        logger.error "Attempt to access invalid cart #{params[:id]}"
-       redirect_to store_url, notice: 'Invalid cart'
+       flash[:danger] = 'Invalid cart'
+       redirect_to store_url
     end
 
 end

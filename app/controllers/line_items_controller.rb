@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  skip_before_action :authorize, only: :create
+  skip_before_action :authorize, only: [:create, :destroy]
   include CurrentCart
   
   before_action :set_cart, only: [:new, :create]
@@ -58,13 +58,29 @@ class LineItemsController < ApplicationController
       end
     end
   end
+  
+  def add
+    product = Product.find(params[:product_id])
+    @line_item = @cart.add_one(product.id)
+    @line_item.update
+  end
+
+  
 
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
+    @line_item = LineItem.find(params[:id])
     @line_item.destroy
+     
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      if LineItem.find_by_cart_id(@line_item.cart_id).nil?
+        flash[:info] = 'Your cart is empty' 
+        format.html { redirect_to store_url }
+      else
+        flash[:info] = 'Item removed' 
+        format.html { redirect_to :back}
+      end
       format.json { head :no_content }
     end
   end

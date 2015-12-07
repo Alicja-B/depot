@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Products</h1>
+<h3>Listing Products</h3>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -17,10 +17,10 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.title %></td>
-        <td><%= product.description %></td>
+        <td><%= sanitize(product.description) %></td>
         <td><%= product.image_url %></td>
         <td><%= product.price %></td>
-        <td><%= product.category_id %></td>
+        <td><%= Category.find(product.category_id).name %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
