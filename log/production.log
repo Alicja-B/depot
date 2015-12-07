@@ -1,0 +1,40 @@
+D, [2015-12-01T21:20:29.559588 #8812] DEBUG -- :   [1m[36m (35.6ms)[0m  [1mCREATE TABLE `carts` (`id` int(11) auto_increment PRIMARY KEY, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+D, [2015-12-01T21:20:29.617187 #8812] DEBUG -- :   [1m[35m (56.0ms)[0m  CREATE TABLE `categories` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+D, [2015-12-01T21:20:29.709317 #8812] DEBUG -- :   [1m[36m (88.2ms)[0m  [1mCREATE TABLE `line_items` (`id` int(11) auto_increment PRIMARY KEY, `product_id` int(11), `cart_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `quantity` int(11) DEFAULT 1, `order_id` int(11)) ENGINE=InnoDB[0m
+D, [2015-12-01T21:20:29.756175 #8812] DEBUG -- :   [1m[35m (29.8ms)[0m  CREATE  INDEX `index_line_items_on_cart_id`  ON `line_items` (`cart_id`) 
+D, [2015-12-01T21:20:29.795073 #8812] DEBUG -- :   [1m[36m (33.3ms)[0m  [1mCREATE  INDEX `index_line_items_on_order_id`  ON `line_items` (`order_id`) [0m
+D, [2015-12-01T21:20:29.830962 #8812] DEBUG -- :   [1m[35m (30.8ms)[0m  CREATE  INDEX `index_line_items_on_product_id`  ON `line_items` (`product_id`) 
+D, [2015-12-01T21:20:29.901055 #8812] DEBUG -- :   [1m[36m (64.1ms)[0m  [1mCREATE TABLE `orders` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `address` text, `email` varchar(255), `pay_type` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+D, [2015-12-01T21:20:29.979854 #8812] DEBUG -- :   [1m[35m (72.8ms)[0m  CREATE TABLE `products` (`id` int(11) auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `image_url` varchar(255), `price` decimal(8,2), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `category_id` varchar(255)) ENGINE=InnoDB
+D, [2015-12-01T21:20:30.030063 #8812] DEBUG -- :   [1m[36m (47.2ms)[0m  [1mCREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `password_digest` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+D, [2015-12-01T21:20:30.112369 #8812] DEBUG -- :   [1m[35m (27.2ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+D, [2015-12-01T21:20:30.165372 #8812] DEBUG -- :   [1m[36m (51.1ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) [0m
+D, [2015-12-01T21:20:30.166376 #8812] DEBUG -- :   [1m[35m (0.0ms)[0m  SELECT version FROM `schema_migrations`
+D, [2015-12-01T21:20:30.170193 #8812] DEBUG -- :   [1m[36m (2.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20151129181256')[0m
+D, [2015-12-01T21:20:30.172652 #8812] DEBUG -- :   [1m[35m (2.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20151112195450')
+D, [2015-12-01T21:20:30.176015 #8812] DEBUG -- :   [1m[36m (3.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20151120154010')[0m
+D, [2015-12-01T21:20:30.178015 #8812] DEBUG -- :   [1m[35m (2.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20151120154207')
+D, [2015-12-01T21:20:30.181051 #8812] DEBUG -- :   [1m[36m (3.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20151122015625')[0m
+D, [2015-12-01T21:20:30.184086 #8812] DEBUG -- :   [1m[35m (2.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20151122020655')
+D, [2015-12-01T21:20:30.187089 #8812] DEBUG -- :   [1m[36m (3.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20151127025152')[0m
+D, [2015-12-01T21:20:30.190126 #8812] DEBUG -- :   [1m[35m (2.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20151127025246')
+D, [2015-12-01T21:20:30.193606 #8812] DEBUG -- :   [1m[36m (2.4ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20151129024924')[0m
+D, [2015-12-01T21:20:30.196042 #8812] DEBUG -- :   [1m[35m (2.4ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20151129181218')
+D, [2015-12-01T21:20:30.215038 #8812] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+D, [2015-12-01T21:20:30.311057 #8812] DEBUG -- :   [1m[35mSQL (2.0ms)[0m  DELETE FROM `products`
+D, [2015-12-01T21:20:30.319064 #8812] DEBUG -- :   [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+D, [2015-12-01T21:20:30.343719 #8812] DEBUG -- :   [1m[35mProduct Exists (1.5ms)[0m  SELECT  1 AS one FROM `products` WHERE `products`.`title` = BINARY 'Smart Blocks' LIMIT 1
+D, [2015-12-01T21:20:30.345705 #8812] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `products` (`title`, `description`, `image_url`, `price`, `category_id`, `created_at`, `updated_at`) VALUES ('Smart Blocks', '<p> Smart blocks help your child to learn about shapes and to develop his imagination </p>', 'toy1.jpg', 12.99, 'Math skills', '2015-12-02 02:20:30', '2015-12-02 02:20:30')[0m
+D, [2015-12-01T21:20:30.348351 #8812] DEBUG -- :   [1m[35m (2.0ms)[0m  COMMIT
+D, [2015-12-01T21:20:30.348787 #8812] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+D, [2015-12-01T21:20:30.349679 #8812] DEBUG -- :   [1m[35mProduct Exists (0.7ms)[0m  SELECT  1 AS one FROM `products` WHERE `products`.`title` = BINARY 'Counting Pegs' LIMIT 1
+D, [2015-12-01T21:20:30.350668 #8812] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `products` (`title`, `description`, `image_url`, `price`, `category_id`, `created_at`, `updated_at`) VALUES ('Counting Pegs', '<p> Counting Pegs help your child to learn about numbers and to develop his math skills </p>', 'toy2.jpg', 12.99, 'Math skills', '2015-12-02 02:20:30', '2015-12-02 02:20:30')[0m
+D, [2015-12-01T21:20:30.353218 #8812] DEBUG -- :   [1m[35m (2.0ms)[0m  COMMIT
+D, [2015-12-01T21:20:30.353218 #8812] DEBUG -- :   [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+D, [2015-12-01T21:20:30.354207 #8812] DEBUG -- :   [1m[35mProduct Exists (1.0ms)[0m  SELECT  1 AS one FROM `products` WHERE `products`.`title` = BINARY 'Counting Cookies' LIMIT 1
+D, [2015-12-01T21:20:30.355217 #8812] DEBUG -- :   [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `products` (`title`, `description`, `image_url`, `price`, `category_id`, `created_at`, `updated_at`) VALUES ('Counting Cookies', '<p> Counting Cookies help your child to learn about numbers and to develop his math skills </p>', 'toy3.jpg', 12.99, 'Math skills', '2015-12-02 02:20:30', '2015-12-02 02:20:30')[0m
+D, [2015-12-01T21:20:30.357476 #8812] DEBUG -- :   [1m[35m (2.3ms)[0m  COMMIT
+D, [2015-12-01T21:20:30.357476 #8812] DEBUG -- :   [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+D, [2015-12-01T21:20:30.357476 #8812] DEBUG -- :   [1m[35mProduct Exists (0.0ms)[0m  SELECT  1 AS one FROM `products` WHERE `products`.`title` = BINARY 'Phonics Blocks' LIMIT 1
+D, [2015-12-01T21:20:30.358491 #8812] DEBUG -- :   [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `products` (`title`, `description`, `image_url`, `price`, `category_id`, `created_at`, `updated_at`) VALUES ('Phonics Blocks', '<p> Phonics blocks help your child to learn about phonics and to develop his reading skills</p>', 'toy4.jpg', 12.99, 'Reading', '2015-12-02 02:20:30', '2015-12-02 02:20:30')[0m
+D, [2015-12-01T21:20:30.361425 #8812] DEBUG -- :   [1m[35m (1.9ms)[0m  COMMIT
