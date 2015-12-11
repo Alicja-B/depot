@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
  skip_before_action :authorize, only: [:show]
- 
+ include CurrentCart
+  
+  before_action :set_cart
  before_action :set_product, only: [:show, :edit, :update, :destroy, :who_bought]
 
   # GET /products
