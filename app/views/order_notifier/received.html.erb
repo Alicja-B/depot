@@ -2,12 +2,12 @@
 <p>
 Dear <%= @order.name %>
 
-Thank you for your recent order from Prodigy Toys.
+Thank you for your recent order from Prodigy Toys.<br>
 
 You ordered the following items:
 
 <table>
-<tr><th colspan="2">Qty</th><th>Description</th></tr>
+<tr><th>Product</th><th>Qty</th><th>Price</th></tr>
 <%= render @order.line_items -%>
 </table>
 
